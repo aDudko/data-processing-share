@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: source-to-kafka-service
+  profiles:
+    active: source_to_kafka
+  config:
+    import: 'configserver:'
+  cloud:
+    config:
+      name: source-to-kafka-service,config-client
+      username: spring_cloud_user
+      password: *
+
+log:
+  app-name: source-to-kafka-service
+
+source-to-kafka-service:
+  enable-mock-tweets: true

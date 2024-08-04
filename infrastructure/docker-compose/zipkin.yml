@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+
+  zipkin-mysql:
+    image: openzipkin/zipkin-mysql:${ZIPKIN_VERSION-latest}
+    container_name: zipkin-mysql
+    networks:
+      - ${GLOBAL_NETWORK:-zipkin}
+
+  zipkin:
+    image: openzipkin/zipkin:${ZIPKIN_VERSION-latest}
+    hostname: zipkin
+    container_name: zipkin
+    environment:
+      - STORAGE_TYPE=mysql
+      - MYSQL_HOST=zipkin-mysql
+      - MYSQL_USER=*
+      - MYSQL_PASS=*
+      - JAVA_OPTS=-Dlogging.level.zipkin2=DEBUG
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    ports:
+      - 9411:9411
+    depends_on:
+      - zipkin-mysql
+    networks:
+      - ${GLOBAL_NETWORK:-zipkin}

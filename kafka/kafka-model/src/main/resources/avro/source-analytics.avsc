@@ -1,0 +1,9 @@
+ {"namespace": "com.data.processing.kafka.avro.model",
+   "type": "record",
+   "name": "SourceAnalyticsAvroModel",
+   "fields": [
+     {"name": "word", "type": ["null", "string"]},
+     {"name": "wordCount", "type": ["null", "long"]},
+     {"name": "createdAt", "type": ["null", "long"], "logicalType": ["null", "date"]}
+   ]
+ }

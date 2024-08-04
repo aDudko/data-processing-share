@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: elastic-query-web-client-2
+  profiles:
+    active: elastic_query_web_2
+  config:
+    import: 'configserver:'
+  cloud:
+    config:
+      name: elastic-query-web-client-2,config-client
+      username: spring_cloud_user
+      password: *
+
+log:
+  app-name: elastic-query-web-client-2

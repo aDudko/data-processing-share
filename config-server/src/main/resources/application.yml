@@ -1,0 +1,26 @@
+server:
+  port: 8888
+
+logging:
+  level:
+    root: INFO
+    org.spring.framework.cloud.config: DEBUG
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          clone-on-start: true
+          uri: https://github.com/aDudko/data-processing-config.git
+          default-label: master
+      fail-fast: true
+  security:
+    user:
+      name: spring_cloud_user
+      password: *
+
+log:
+  app-name: config-server

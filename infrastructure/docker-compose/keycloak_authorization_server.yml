@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+
+  keycloak-authorization-server:
+    image: quay.io/keycloak/keycloak:${KEYCLOAK_VERSION:-latest}
+    container_name: keycloak-authorization-server
+    hostname: keycloak-server
+    ports:
+      - '9091:9091'
+    environment:
+      - "KEYCLOAK_USER=*"
+      - "KEYCLOAK_PASSWORD=*"
+      - "JAVA_OPTS=-Djboss.http.port=9091"
+      - "DB_VENDOR=POSTGRES"
+      - "DB_ADDR=host.docker.internal"
+      - "DB_DATABASE=keycloak"
+      - "DB_USER=*"
+      - "DB_SCHEMA=keycloak"
+      - "DB_PASSWORD=*"
